@@ -1,0 +1,88 @@
+.lBoardBody{
+    /* background-image:url('./images/bg.png') */
+    background-image: linear-gradient(to right, #5FF6E9, #717CFB);
+    font-family: cursive;
+}
+
+.lBoardTable{
+    background: #fff;
+}
+
+.lBoardTableBody td, th{
+    font-weight: 700;
+    font-family: cursive;
+    text-align: center;
+    font-size: 35px;
+    /* color:#fff; */
+}
+
+.lBoardTable thead{
+    background: #444;
+    color: white;
+    text-transform: uppercase;
+}
+
+.lBoardBody ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .lBoardBody ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .lBoardBody ::-webkit-scrollbar-thumb {
+    background:#a5478c; 
+  }
+  
+  /* Handle on hover */
+  .lBoardBody ::-webkit-scrollbar-thumb:hover {
+    background: #922676; 
+  }
+
+  .modal-backdrop {
+    background-color: rgba(0,0,0,0.5);
+ }
+ .btn-danger.focus, .btn-danger:focus {
+    box-shadow: none !important;
+}
+.customInput{
+  border-radius: 35px;
+  width: 45%;
+  padding: 10px;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+}
+.customInput:focus{
+  box-shadow: none !important;
+}
+.loginBtn{
+  background-image: linear-gradient(to right, #5FF6E9, #717CFB);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+  /* padding: 5px 100px; */
+  width: 45%;
+  border-radius: 35px;
+  box-shadow: 0 1px 2px 1px rgba(0,0,0,0.4);
+  border: none !important;
+}
+.loginBtn:focus{
+  box-shadow: none !important;
+}
+.loginBtn:active{
+  background-image: linear-gradient(to right, #5FF6E9, #717CFB) !important;
+}
+.logoutLink{
+  float: right;
+  color: white;
+  font-weight: 600;
+  text-decoration: underline;
+}
+@media only screen and (min-width: 1200px) {
+    .container {
+        max-width: 100%;
+    }
+  }

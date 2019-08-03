@@ -1,0 +1,151 @@
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    <link href="{% static 'css/lib/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/helper.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/sweetalert/sweetalert.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="{% static 'css/lib/calendar2/semantic.ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/calendar2/pignose.calendar.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/owl.carousel.min.css" rel="stylesheet' %}" />
+    <link href="{% static 'css/lib/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="{% static 'css/multiple-select.css' %}" />
+    <link href="{% static 'css/lib/toastr/toastr.min.css' %}" rel="stylesheet">
+    <link href="https://code.jquery.com/jquery-1.12.4.js" />
+    <link href="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" />
+    <link href="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js" />
+    <link rel="stylesheet" href="{% static 'css/intlTelInput.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <style>
+    .iti-flag {background-image: url("{% static 'images/flags.png' %}");}
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    .iti-flag {background-image: url("{% static 'images/flags@2x.png' %}");}
+    }
+    </style>
+    <style>
+    .intl-tel-input {width: 100%;}
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* The Close Button */
+
+        .btn-active {
+            color: #fff;
+            background-color: #aacef5;
+            border-color: #3d8be0;
+        }
+        .btn-add {
+            color: #fff;
+            background-color: #7d858c;
+            border-color: #000000;
+        }
+        .btn-rounded {
+            border-radius: 100px;
+            padding: 2px 10px;
+        }
+</style>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+</head>
+
+<body class="fix-header fix-sidebar">
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg>
+</div>
+<div id="main-wrapper">
+    <div class="header">
+        <nav class="navbar top-navbar navbar-expand-md navbar-light">
+
+            <div class="navbar-collapse">
+                <!-- toggle and nav items -->
+                <ul class="navbar-nav mr-auto mt-md-0">
+                    <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                    <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted" id="hid" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                </ul>
+                <!-- User profile and search -->
+                <ul class="navbar-nav my-lg-0">
+                    <!-- Profile -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/Admin.png' %}" alt="user"  height="30" width="30"/></a>
+                        <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                            <ul class="dropdown-user">
+                                <li><a href="/"><i class="fa fa-power-off"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="left-sidebar">
+        <div class="scroll-sidebar">
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li class="nav-devider"></li>
+                    <li> <a href="/superadmin/dashboard/{{ id }}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard </span></a>
+                    <li><a href="/superadmin/tasks/{{ id }}"  aria-expanded="false"><i class="fa fa-tablet"></i><span class="hide-menu">Tasks</span></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+<script src="{% static 'js/lib/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'js/lib/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'js/sidebarmenu.js' %}"></script>
+<script src="{% static 'js/lib/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static 'js/lib/morris-chart/raphael-min.js' %}"></script>
+<script src="{% static 'js/lib/morris-chart/morris.js' %}"></script>
+<script src="{% static 'js/lib/owl-carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/lib/owl-carousel/owl.carousel-init.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static 'js/lib/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'js/lib/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'js/lib/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'js/lib/sweetalert/sweetalert.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{% static 'js/lib/datatables/datatables.min.js' %}"></script>
+<script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'js/sidebarmenu.js' %}"></script>
+<script src="{% static 'js/API_HOST.js' %}"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+<script src="{% static 'js/lib/toastr/toastr.min.js' %}"></script>
+<script src="{% static 'js/lib/toastr/toastr.init.js' %}"></script>
+<script src="{% static 'js/lib/chart-js/Chart.bundle.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+<script src="{% static 'js/lib/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static 'js/lib/datatables/datatables.min.js' %}"></script>
+<script src="{% static 'js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js' %}"></script>
+<script src="{% static 'js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js' %}"></script>
+<script src="{% static 'js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js' %}"></script>
+<script src="{% static 'js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js' %}"></script>
+<script src="{% static 'js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'js/lib/datatables/datatables-init.js' %}"></script>
+</body>
+</html>

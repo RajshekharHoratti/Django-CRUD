@@ -1,0 +1,109 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link href="{% static 'css/lib/toastr/toastr.min.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('{% static 'images/bg-01.jpg' %}');">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" method="post" action="">{% csrf_token %}
+                <span class="login100-form-logo">
+						<i><img src="{% static 'images/background/login-register.jpg' %}" align="center"
+                                class="dark-logo"/></i>
+					</span>
+                <span class="login100-form-title p-b-34 p-t-27" id="log">
+						Log in
+					</span>
+                <div class="btn-group" id="ident">
+                    <div class="row">
+                        <div class="col" style="color:#FFFFFF">
+                            <div id="rd">
+                                <input type="radio" id="identity1" name="identity" value="0" style="margin-right: 6"
+                                       >SuperAdmin &nbsp&nbsp&nbsp
+                                <input type="radio" id="identity2" name="identity" value="1" style="margin-right: 6"
+                                       checked>User
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="wrap-input100 validate-input" data-validate="Enter username" id="user">
+                    <input class="input100" type="text" id="email" name="email" placeholder="Email Address">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password" id="pass">
+                    <input class="input100" type="password" id="password" name="password" placeholder="Password">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+                <div class="container-login100-form-btn" id="login" onclick="getLogin()">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/API_HOST.js' %}"></script>
+<script>
+
+//-------------------------------------for login--------------------------------------------------------------------
+	function getLogin()
+		{
+			var email = $('#email').val();
+			var identity = document.getElementById('rd').value;
+			if (document.getElementById('identity1').checked) {
+  				identity = document.getElementById('identity1').value;
+				}
+			if (document.getElementById('identity2').checked) {
+  				identity = document.getElementById('identity2').value;
+				}
+			var password = $('#password').val();
+			var my_data = {
+					    "email":email,
+						"identity":identity,
+					    "password":password,
+			        }
+			$.ajax({
+			    url: API+'login/',
+				type: 'post',
+				contentType: 'application/json',
+				data:JSON.stringify(my_data),
+				dataType: '',
+				success: function(data)
+				    {
+					    if(data['identity'] == 0)
+						  	{
+								window.location = `${API}superadmin/dashboard/${data['id']}`
+							}
+						else
+							{
+								window.location = API+"user/"+data['userId'];
+							}
+					},
+					error: function (xhr, textStatus, errorThrown)
+					    {}
+				});
+		}
+
+</script>
+</body>

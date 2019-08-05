@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^superadmin/tasks/(?P<id>[\w\-]+)$', views.admin_tasks_page, name='admin_tasks_page'),
     url(r'^addTask/(?P<id>[\w\-]+)$', views.admin_add_tasks_page, name='admin_add_tasks_page'),
     url(r'^addTaskLogic/(?P<id>[\w\-]+)$', views.addTaskLogic, name='addTaskLogic'),
+    url(r'^updateTaskStatus/$', views.updateTaskStatus, name='updateTaskStatus'),
 
 
 

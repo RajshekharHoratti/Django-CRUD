@@ -47,6 +47,35 @@ def addTaskLogic(request, id):
     else:
         return redirect('/user/tasks/'+id)
 
+def updateTaskStatus(request):
+    print(request.POST)
+
+
+    if request.POST.get('status') == "pending":
+        statusCode = 0
+        statusMsg = "pending"
+    elif request.POST.get('status') == "in_progress":
+        statusCode = 1
+        statusMsg = "in_progress"
+    elif request.POST.get('status') == "completed":
+        statusCode = 2
+        statusMsg = "completed"
+
+    db.tasks.update_one({'_id': ObjectId(request.POST.get('taskId'))
+    }, {
+        '$set': {
+            'statusCode': statusCode,
+            'statusMsg': statusMsg,
+            'modifiedAt': time.time(),
+        }
+    }, upsert=False)
+
+    detailsDB = db.superAdmin.find({"_id": ObjectId(request.POST.get('userId'))}).count()
+    if detailsDB > 0:
+        return redirect('/superadmin/tasks/' + request.POST.get('userId'))
+    else:
+        return redirect('/user/tasks/' + request.POST.get('userId'))
+
 
 
 class LoginAPI(APIView):
@@ -108,6 +137,7 @@ class TasksAPI(APIView):
                             "description": str(item['description']),
                             "timing": str(item['timing']),
                             "statusMsg": str(item['statusMsg']),
+                            "statusCode": item['statusCode'],
                             "createdAt": datetime.utcfromtimestamp(item['createdAt']).strftime('%Y-%m-%d %H:%M:%S'),
                             "modifiedAt": datetime.utcfromtimestamp(item['modifiedAt']).strftime(
                                 '%Y-%m-%d %H:%M:%S') if len(str(item['modifiedAt'])) > 0 else "",
@@ -126,6 +156,7 @@ class TasksAPI(APIView):
                                 "description": str(item['description']),
                                 "timing": str(item['timing']),
                                 "statusMsg": str(item['statusMsg']),
+                                "statusCode": item['statusCode'],
                                 "createdAt": datetime.utcfromtimestamp(item['createdAt']).strftime('%Y-%m-%d %H:%M:%S'),
                                 "modifiedAt": datetime.utcfromtimestamp(item['modifiedAt']).strftime(
                                     '%Y-%m-%d %H:%M:%S') if len(str(item['modifiedAt'])) > 0 else "",

@@ -93,11 +93,12 @@
 				    {
 					    if(data['identity'] == 0)
 						  	{
-								window.location = `${API}superadmin/dashboard/${data['id']}`
+								window.location = `${API}superadmin/tasks/${data['id']}`
 							}
 						else
 							{
-								window.location = API+"user/"+data['userId'];
+								<!--window.location = API+"user/"+data['id'];-->
+								window.location = `${API}user/tasks/${data['id']}`
 							}
 					},
 					error: function (xhr, textStatus, errorThrown)

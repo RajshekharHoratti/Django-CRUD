@@ -129,17 +129,14 @@ $(document).ready(function(){
               url: API+'tasks/',
               type: 'get',
               dataType: 'json',
-              headers: {},
+              headers: {"userId": '{{id}}'},
               success: function(data, textStatus, xhr)
                 {
                     table = $('#myTable').DataTable();
-
                     var width="10%"
-
                     for(var i=0;i<data['data'].length;i++)
                     {
                         currRow = data['data'][i]['id']
-
                         table.row.add(['<div style="text-align: center;">' + (i + 1) + '</div>',
                         '<div style="text-align: center;">' + data['data'][i]['userName'] + '</div>',
                         '<div style="text-align: center;">' + data['data'][i]['title'] + '</div>',
